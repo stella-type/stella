@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人网页 | 张三的个人网站</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- 预加载关键资源 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 优化CSS -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* 减少重排和重绘的样式 */
+        .card {
+            will-change: transform;
+        }
+        /* 延迟加载非关键资源 */
+        .lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lazy.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-blue-600">张三</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="font-medium hover:text-blue-600 transition-colors">关于我</a>
+                    <a href="#skills" class="font-medium hover:text-blue-600 transition-colors">技能</a>
+                    <a href="#projects" class="font-medium hover:text-blue-600 transition-colors">项目</a>
+                    <a href="#experience" class="font-medium hover:text-blue-600 transition-colors">经历</a>
+                    <a href="#contact" class="font-medium hover:text-blue-600 transition-colors">联系我</a>
+                </div>
+                <button id="menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden bg-white shadow-lg hidden">
+            <div class="container mx-auto px-4 py-2">
+                <a href="#about" class="block py-2 hover:text-blue-600 transition-colors">关于我</a>
+                <a href="#skills" class="block py-2 hover:text-blue-600 transition-colors">技能</a>
+                <a href="#projects" class="block py-2 hover:text-blue-600 transition-colors">项目</a>
+                <a href="#experience" class="block py-2 hover:text-blue-600 transition-colors">经历</a>
+                <a href="#contact" class="block py-2 hover:text-blue-600 transition-colors">联系我</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 个人简介部分 -->
+    <section id="about" class="pt-28 pb-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">你好，我是 <span class="text-blue-600">张三</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-gray-700">前端开发工程师</h2>
+                    <p class="text-lg mb-8 text-gray-600">
+                        我是一名热爱编程的前端开发工程师，拥有3年的Web开发经验。我专注于创建美观、响应式的用户界面，
+                        擅长使用现代前端技术构建高质量的Web应用。我热衷于学习新技术，并不断挑战自己解决复杂的问题。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors">
+                            联系我
+                        </a>
+                        <a href="#projects" class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-6 rounded-lg transition-colors">
+                            查看作品
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute inset-0 bg-blue-600 rounded-full opacity-20 transform -translate-x-2 translate-y-2"></div>
+                        <img src="https://picsum.photos/id/1005/400/400" alt="个人照片" class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-xl lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能部分 -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">我的技能</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    以下是我掌握的技术技能和专业领域，我不断学习和提升自己的技术能力，以适应快速发展的前端领域。
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 技能卡片 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow skill-card">
+                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-code text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">前端开发</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            HTML5 / CSS3 / JavaScript
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            React / Vue.js
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            Tailwind CSS / SASS
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            TypeScript
+                        </li>
+                    </ul>
+                </div>
+                <!-- 技能卡片 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow skill-card">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-server text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">后端开发</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            Node.js / Express
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            RESTful API设计
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            MongoDB / MySQL
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            基本的DevOps知识
+                        </li>
+                    </ul>
+                </div>
+                <!-- 技能卡片 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow skill-card">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa fa-paint-brush text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">其他技能</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            UI/UX设计基础
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            响应式设计
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            版本控制 (Git)
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-green-500 mr-2"></i>
+                            敏捷开发方法
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目/作品展示部分 -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">我的项目</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    以下是我参与开发的一些项目，展示了我的技术能力和解决问题的方法。
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 项目卡片 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow project-card">
+                    <img src="https://picsum.photos/id/180/600/400" alt="项目图片" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">电商网站前端重构</h3>
+                        <p class="text-gray-600 mb-4">
+                            使用React和Tailwind CSS重构了一个电商网站的前端界面，提升了用户体验和页面加载速度。
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">React</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Tailwind CSS</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Redux</span>
+                        </div>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 项目卡片 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow project-card">
+                    <img src="https://picsum.photos/id/26/600/400" alt="项目图片" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">任务管理应用</h3>
+                        <p class="text-gray-600 mb-4">
+                            开发了一个功能完整的任务管理应用，支持任务创建、编辑、删除和状态管理。
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Vue.js</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Vuex</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Firebase</span>
+                        </div>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 项目卡片 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow project-card">
+                    <img src="https://picsum.photos/id/96/600/400" alt="项目图片" class="w-full h-48 object-cover lazy">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">个人博客系统</h3>
+                        <p class="text-gray-600 mb-4">
+                            设计并开发了一个个人博客系统，支持文章发布、编辑、分类和评论功能。
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Express</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">MongoDB</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">EJS</span>
+                        </div>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 经历/教育部分 -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">我的经历</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    以下是我的工作经历和教育背景，展示了我的专业发展历程。
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- 工作经历 -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fa fa-briefcase text-blue-600 mr-3"></i>
+                        工作经历
+                    </h3>
+                    <div class="space-y-8">
+                        <!-- 工作经历 1 -->
+                        <div class="relative pl-8 border-l-2 border-blue-200 timeline-item">
+                            <div class="absolute left-[-9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
+                            <div class="bg-gray-50 p-6 rounded-xl">
+                                <h4 class="text-xl font-semibold mb-1">前端开发工程师</h4>
+                                <p class="text-blue-600 font-medium mb-2">ABC科技有限公司 | 2021年至今</p>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>负责公司产品的前端开发和维护，使用React和TypeScript构建现代化的用户界面</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>参与产品需求分析和设计讨论，提供前端技术方案和优化建议</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>与后端团队协作，实现前后端数据交互和API集成</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- 工作经历 2 -->
+                        <div class="relative pl-8 border-l-2 border-blue-200 timeline-item">
+                            <div class="absolute left-[-9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
+                            <div class="bg-gray-50 p-6 rounded-xl">
+                                <h4 class="text-xl font-semibold mb-1">初级前端开发工程师</h4>
+                                <p class="text-blue-600 font-medium mb-2">XYZ互联网公司 | 2019年 - 2021年</p>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>参与公司官网和内部系统的前端开发，使用HTML、CSS和JavaScript实现页面功能</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>负责页面的响应式设计和浏览器兼容性处理</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>协助团队解决前端开发中遇到的技术问题</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 教育背景 -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fa fa-graduation-cap text-blue-600 mr-3"></i>
+                        教育背景
+                    </h3>
+                    <div class="space-y-8">
+                        <!-- 教育背景 1 -->
+                        <div class="relative pl-8 border-l-2 border-blue-200 timeline-item">
+                            <div class="absolute left-[-9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
+                            <div class="bg-gray-50 p-6 rounded-xl">
+                                <h4 class="text-xl font-semibold mb-1">计算机科学与技术</h4>
+                                <p class="text-blue-600 font-medium mb-2">某大学 | 2015年 - 2019年</p>
+                                <p class="text-gray-600">
+                                    获得学士学位，主修计算机科学与技术专业，学习了数据结构、算法、计算机网络、操作系统等课程，
+                                    并通过了英语六级考试。在校期间积极参与各种编程竞赛和项目实践，积累了丰富的编程经验。
+                                </p>
+                            </div>
+                        </div>
+                        <!-- 教育背景 2 -->
+                        <div class="relative pl-8 border-l-2 border-blue-200 timeline-item">
+                            <div class="absolute left-[-9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
+                            <div class="bg-gray-50 p-6 rounded-xl">
+                                <h4 class="text-xl font-semibold mb-1">前端开发专业培训</h4>
+                                <p class="text-blue-600 font-medium mb-2">某培训机构 | 2018年暑假</p>
+                                <p class="text-gray-600">
+                                    参加了为期两个月的前端开发专业培训，系统学习了HTML5、CSS3、JavaScript、jQuery等前端技术，
+                                    并完成了多个实战项目，为后续的前端开发工作打下了坚实的基础。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式部分 -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">联系我</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    如果您对我的作品感兴趣，或者有任何问题，欢迎随时与我联系。
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- 联系信息 -->
+                <div>
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-semibold mb-6">联系信息</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fa fa-envelope text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">邮箱</h4>
+                                    <p class="text-gray-600">zhangsan@example.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fa fa-phone text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">电话</h4>
+                                    <p class="text-gray-600">+86 123 4567 8910</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fa fa-map-marker text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">地址</h4>
+                                    <p class="text-gray-600">北京市朝阳区</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="text-lg font-medium mb-4">社交媒体</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-blue-100 hover:bg-blue-200 rounded-full flex items-center justify-center transition-colors social-icon">
+                                    <i class="fa fa-github text-blue-600"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-100 hover:bg-blue-200 rounded-full flex items-center justify-center transition-colors social-icon">
+                                    <i class="fa fa-linkedin text-blue-600"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-100 hover:bg-blue-200 rounded-full flex items-center justify-center transition-colors social-icon">
+                                    <i class="fa fa-twitter text-blue-600"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-100 hover:bg-blue-200 rounded-full flex items-center justify-center transition-colors social-icon">
+                                    <i class="fa fa-weixin text-blue-600"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 联系表单 -->
+                <div>
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-semibold mb-6">发送消息</h3>
+                        <form id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="请输入您的姓名" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="请输入您的邮箱" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="请输入消息主题" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">消息</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="请输入您的消息" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 rounded-lg transition-colors">
+                                发送消息
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">张三</h3>
+                    <p class="text-gray-400">前端开发工程师</p>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">关于我</a>
+                    <a href="#skills" class="text-gray-400 hover:text-white transition-colors">技能</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors">项目</a>
+                    <a href="#experience" class="text-gray-400 hover:text-white transition-colors">经历</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系我</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-weixin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 张三. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <!-- 延迟加载脚本 -->
+    <script>
+        // 图片延迟加载
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyImages = document.querySelectorAll('.lazy');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            const image = entry.target;
+                            image.classList.add('loaded');
+                            imageObserver.unobserve(image);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(function(image) {
+                    imageObserver.observe(image);
+                });
+            } else {
+                // 降级方案
+                lazyImages.forEach(function(image) {
+                    image.classList.add('loaded');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
